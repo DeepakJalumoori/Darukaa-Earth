@@ -45,18 +45,13 @@ jobs:
           cd backend
           ruff check .
 
-      - name: Explicitly Enable PostGIS in CI Database
-        env:
-          PGPASSWORD: password
-        run: |
-          # Use psql client to connect to the postgres service and ensure postgis is enabled
-          # We use sudo apt-get to install postgresql-client quickly in the ubuntu runner
-          sudo apt-get update && sudo apt-get install -y postgresql-client
-          psql -h localhost -U postgres -d darukaa_test -c "CREATE EXTENSION IF NOT EXISTS postgis;"
-
       - name: Run Tests
         env:
           DATABASE_URL: postgresql://postgres:password@localhost:5432/darukaa_test
+          TEST_DB_USER: postgres
+          TEST_DB_PASSWORD: password
+          TEST_DB_DEFAULT: darukaa_test
+          TEST_DB_NAME: darukaa_test
           SECRET_KEY: test_secret_key_ci_only
           ALGORITHM: HS256
         run: |

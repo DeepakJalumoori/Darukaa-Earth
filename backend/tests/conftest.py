@@ -1,5 +1,6 @@
 """Test fixtures and configuration."""
 
+import os
 from collections.abc import Generator
 
 import psycopg
@@ -12,15 +13,18 @@ from sqlalchemy.orm import Session, sessionmaker
 from app.database import Base, get_db
 from app.main import app
 
-# Test database connection parameters
-TEST_DB_DSN_DEFAULT = (
-    "dbname=darukaa user=darukaa password=darukaa_dev host=localhost port=5432"
-)
-TEST_DB_DSN_TEST = (
-    "dbname=darukaa_test user=darukaa password=darukaa_dev host=localhost port=5432"
-)
+# Test database connection parameters, falling back to local dev defaults
+DB_USER = os.getenv("TEST_DB_USER", "darukaa")
+DB_PASSWORD = os.getenv("TEST_DB_PASSWORD", "darukaa_dev")
+DB_HOST = os.getenv("TEST_DB_HOST", "localhost")
+DB_PORT = os.getenv("TEST_DB_PORT", "5432")
+DB_DEFAULT_NAME = os.getenv("TEST_DB_DEFAULT", "darukaa")
+DB_TEST_NAME = os.getenv("TEST_DB_NAME", "darukaa_test")
+
+TEST_DB_DSN_DEFAULT = f"dbname={DB_DEFAULT_NAME} user={DB_USER} password={DB_PASSWORD} host={DB_HOST} port={DB_PORT}"
+TEST_DB_DSN_TEST = f"dbname={DB_TEST_NAME} user={DB_USER} password={DB_PASSWORD} host={DB_HOST} port={DB_PORT}"
 SQLALCHEMY_DATABASE_URL = (
-    "postgresql+psycopg://darukaa:darukaa_dev@localhost:5432/darukaa_test"
+    f"postgresql+psycopg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_TEST_NAME}"
 )
 
 
@@ -28,7 +32,7 @@ def setup_test_database():
     """Create the test database and postgis extension if they don't exist."""
     try:
         with psycopg.connect(TEST_DB_DSN_DEFAULT, autocommit=True) as conn:
-            conn.execute("CREATE DATABASE darukaa_test")
+            conn.execute(f"CREATE DATABASE {DB_TEST_NAME}")
     except DuplicateDatabase:
         pass
     except Exception as e:
