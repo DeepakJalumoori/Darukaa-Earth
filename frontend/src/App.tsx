@@ -1,14 +1,40 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
+import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { AppLayout } from './components/layout/AppLayout'
+import { LoginPage } from './pages/auth/LoginPage'
+import { RegisterPage } from './pages/auth/RegisterPage'
+import { DashboardPage } from './pages/dashboard/DashboardPage'
+
 function App() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-green-800">🌍 Darukaa.Earth</h1>
-        <p className="mt-2 text-gray-600">Geospatial Data Analytics Platform</p>
-        <p className="mt-4 text-sm text-gray-400">
-          Application scaffold ready. Building...
-        </p>
-      </div>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<DashboardPage />} />
+              <Route
+                path="/projects"
+                element={<div className="p-6">Projects (Phase 4)</div>}
+              />
+              <Route
+                path="/map"
+                element={<div className="p-6">Map View (Phase 5)</div>}
+              />
+            </Route>
+          </Route>
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
