@@ -108,7 +108,7 @@ export function MapPage() {
   }
 
   return (
-    <div className="flex flex-col h-full space-y-4">
+    <div className="flex flex-col w-full h-[calc(100vh-7rem)] space-y-4">
       {/* Map Header / Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-zinc-200 shadow-sm shrink-0">
         <div className="flex items-center gap-3">
@@ -152,7 +152,7 @@ export function MapPage() {
       </div>
 
       {/* Map Container */}
-      <div className="flex-1 bg-white rounded-xl shadow-sm border border-zinc-200 relative">
+      <div className="flex-1 w-full bg-white rounded-xl shadow-sm border border-zinc-200 relative">
         {!selectedProjectId ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-zinc-500 p-6 text-center z-10 bg-zinc-50 rounded-xl">
             <MapIcon className="h-16 w-16 text-zinc-300 mb-4" />

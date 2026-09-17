@@ -67,6 +67,8 @@ export function MapView({
     m.addControl(new mapboxgl.NavigationControl(), 'top-right')
 
     m.on('load', () => {
+      m.resize()
+
       m.addSource('sites', {
         type: 'geojson',
         data: { type: 'FeatureCollection', features: [] },
@@ -270,8 +272,8 @@ export function MapView({
   }
 
   return (
-    <div className="absolute inset-0 rounded-xl overflow-hidden">
-      <div ref={mapContainer} className="absolute inset-0" />
+    <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden">
+      <div ref={mapContainer} className="absolute inset-0 w-full h-full" />
       {isDrawMode && (
         <div className="absolute top-4 left-4 bg-white px-4 py-2 rounded-md shadow-md z-10 border border-zinc-200">
           <p className="text-sm font-medium text-emerald-700">
