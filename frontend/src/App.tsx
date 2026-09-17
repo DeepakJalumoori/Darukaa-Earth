@@ -8,6 +8,7 @@ import { RegisterPage } from './pages/auth/RegisterPage'
 import { DashboardPage } from './pages/dashboard/DashboardPage'
 import { ProjectDetailPage } from './pages/projects/ProjectDetailPage'
 import { MapPage } from './pages/map/MapPage'
+import { AnalyticsPage } from './pages/analytics/AnalyticsPage'
 
 function App() {
   return (
@@ -25,10 +26,7 @@ function App() {
               <Route path="/" element={<DashboardPage />} />
               <Route path="/projects/:id" element={<ProjectDetailPage />} />
               <Route path="/map" element={<MapPage />} />
-              <Route
-                path="/analytics/:id"
-                element={<div className="p-6">Analytics (Phase 6)</div>}
-              />
+              <Route path="/analytics/:id" element={<AnalyticsPage />} />
             </Route>
           </Route>
 
