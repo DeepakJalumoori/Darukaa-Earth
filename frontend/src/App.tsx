@@ -7,6 +7,7 @@ import { LoginPage } from './pages/auth/LoginPage'
 import { RegisterPage } from './pages/auth/RegisterPage'
 import { DashboardPage } from './pages/dashboard/DashboardPage'
 import { ProjectDetailPage } from './pages/projects/ProjectDetailPage'
+import { MapPage } from './pages/map/MapPage'
 
 function App() {
   return (
@@ -23,10 +24,7 @@ function App() {
             <Route element={<AppLayout />}>
               <Route path="/" element={<DashboardPage />} />
               <Route path="/projects/:id" element={<ProjectDetailPage />} />
-              <Route
-                path="/map"
-                element={<div className="p-6">Map View (Phase 5)</div>}
-              />
+              <Route path="/map" element={<MapPage />} />
               <Route
                 path="/analytics/:id"
                 element={<div className="p-6">Analytics (Phase 6)</div>}

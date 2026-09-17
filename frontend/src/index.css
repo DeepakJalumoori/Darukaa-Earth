@@ -2,13 +2,7 @@
 
 /* Mapbox GL JS stylesheet */
 @import 'mapbox-gl/dist/mapbox-gl.css';
-
-/*
- * Darukaa.Earth — Global Styles
- * Earth-tone color palette for a professional geospatial SaaS look.
- * Primary colors are applied via Tailwind utility classes.
- * This file contains only base resets and third-party CSS imports.
- */
+@import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 :root {
   --color-earth-900: #1a2e1a;
@@ -25,13 +19,7 @@
 
 body {
   margin: 0;
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f8faf8;
