@@ -1,0 +1,60 @@
+# =========================
+# Environment & Secrets
+# =========================
+.env
+.env.local
+.env.production
+.env.staging
+
+# =========================
+# Node.js / Frontend
+# =========================
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.vite/
+
+# =========================
+# Python / Backend
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# =========================
+# Database
+# =========================
+*.sqlite3
+*.db
+
+# =========================
+# IDE & Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
