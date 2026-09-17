@@ -15,6 +15,7 @@ from app.schemas.auth import (
 from app.services.auth import create_access_token, hash_password, verify_password
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 
 @router.post(

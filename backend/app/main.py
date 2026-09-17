@@ -32,9 +32,16 @@ def create_app() -> FastAPI:
         Base.metadata.create_all(bind=engine)
 
     # Register API routers
+    from app.api.analytics import router as analytics_router
     from app.api.auth import router as auth_router
+    from app.api.projects import router as projects_router
+    from app.api.sites import router as sites_router
 
     app.include_router(auth_router)
+    app.include_router(auth_router, prefix="/api")
+    app.include_router(projects_router, prefix="/api")
+    app.include_router(sites_router, prefix="/api")
+    app.include_router(analytics_router, prefix="/api")
 
     # Health check
     @app.get("/api/health")

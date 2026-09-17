@@ -4,7 +4,7 @@ import uuid
 from datetime import UTC, datetime
 
 from geoalchemy2 import Geometry
-from sqlalchemy import DateTime, Float, ForeignKey, Index, String
+from sqlalchemy import DateTime, Float, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -41,9 +41,6 @@ class Site(Base):
     analytics: Mapped[list["SiteAnalytics"]] = relationship(  # noqa: F821
         back_populates="site", cascade="all, delete-orphan"
     )
-
-    # Spatial index for efficient geospatial queries
-    __table_args__ = (Index("idx_sites_geometry", "geometry", postgresql_using="gist"),)
 
     def __repr__(self) -> str:
         return f"<Site {self.name}>"
