@@ -270,7 +270,7 @@ export function MapView({
   }
 
   return (
-    <div className="relative w-full h-full rounded-xl overflow-hidden border border-zinc-200">
+    <div className="absolute inset-0 rounded-xl overflow-hidden">
       <div ref={mapContainer} className="absolute inset-0" />
       {isDrawMode && (
         <div className="absolute top-4 left-4 bg-white px-4 py-2 rounded-md shadow-md z-10 border border-zinc-200">
