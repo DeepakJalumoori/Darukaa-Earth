@@ -27,7 +27,13 @@ def create_app() -> FastAPI:
     # Create tables on startup (using create_all for MVP; Alembic later)
     @app.on_event("startup")
     def on_startup():
-        import app.models  # noqa: F401 — ensure all models are registered
+        from sqlalchemy import text
+
+        import app.models  # noqa: F401 - ensure all models are registered
+
+        with engine.connect() as conn:
+            conn.execute(text("CREATE EXTENSION IF NOT EXISTS postgis;"))
+            conn.commit()
 
         Base.metadata.create_all(bind=engine)
 

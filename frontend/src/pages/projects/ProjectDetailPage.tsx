@@ -161,7 +161,7 @@ export function ProjectDetailPage() {
                           : 'Calculating...'}
                       </p>
                     </div>
-                    <div className="ml-2 flex-shrink-0 flex gap-2">
+                    <div className="ml-2 shrink-0 flex gap-2">
                       <Link
                         to={`/map?project=${project.id}&site=${site.id}`}
                         className="inline-flex items-center rounded bg-white px-2 py-1 text-xs font-medium text-zinc-600 shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50"

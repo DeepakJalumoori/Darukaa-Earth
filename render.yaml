@@ -1,0 +1,29 @@
+# render.yaml
+services:
+  - type: web
+    name: darukaa-api
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: darukaa-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "1440"
+      - key: CORS_ORIGINS
+        # Update this to match your deployed Vercel URL, e.g., https://darukaa.vercel.app
+        value: "*"
+
+databases:
+  - name: darukaa-db
+    databaseName: darukaa
+    user: darukaa_user
+    plan: free
+    postgresMajorVersion: "15"
